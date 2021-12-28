@@ -22,6 +22,8 @@
         "react-hooks"
     ],
     "rules": {
+        "implicit-arrow-linebreak": "off",
+        "react/require-default-props": [0],
         "react/jsx-one-expression-per-line": [0],
         "operator-linebreak": ["error", "after"],
         "no-use-before-define": "off",

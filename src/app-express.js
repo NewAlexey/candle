@@ -9,10 +9,9 @@ const PORT = process.evn?.PORT || 3000;
 const appExpress = express();
 appExpress.use(bodyParser.json());
 appExpress.use(cors());
-appExpress.use(
-  express.static(path.join(__dirname, 'public')),
+appExpress.use(express.static(path.join(__dirname, 'public')));
+appExpress.get('/*', (req, res) =>
+  res.sendFile(path.resolve('build', 'public', 'index.html')),
 );
 
-appExpress.listen(PORT, () =>
-  console.log(`Server started on ${PORT}`),
-);
+appExpress.listen(PORT, () => console.log(`Server started on ${PORT}`));

@@ -1,23 +1,21 @@
 import React from 'react';
-import TestComponent from './components/TestComponent';
 import './app.scss';
-import {
-  AppContext,
-  contextData,
-} from './helpers/AppContext';
+import { BrowserRouter } from 'react-router-dom';
+import { AppContext, contextData } from './helpers/AppContext';
 import AppContainer from './containers/AppContainer/AppContainer';
-import Image from './components/Image/Image';
+import {
+  AppRouterContent,
+  NavigationComponent,
+} from './components/Router/Router';
 
 const App = (): JSX.Element => (
   <AppContext.Provider value={contextData}>
-    <AppContainer>
-      <p>Rollup + TypeScript + React = ❤️</p>
-      <TestComponent text="hehehehh eehhehhehe" />
-      <Image
-        src="/assets/images/sedan.png"
-        alt="sedan"
-      />
-    </AppContainer>
+    <BrowserRouter>
+      <NavigationComponent />
+      <AppContainer>
+        <AppRouterContent />
+      </AppContainer>
+    </BrowserRouter>
   </AppContext.Provider>
 );
 
