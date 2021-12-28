@@ -7,7 +7,7 @@ import scss from 'rollup-plugin-scss';
 import { terser } from 'rollup-plugin-terser';
 import serve from 'rollup-plugin-serve';
 import livereload from 'rollup-plugin-livereload';
-import copy from 'rollup-plugin-copy-assets';
+import copy from 'rollup-plugin-copy';
 
 const isProd =
   process.env.NODE_ENV === 'production';
@@ -16,7 +16,7 @@ const extensions = ['.js', '.ts', '.tsx'];
 export default {
   input: 'src/index.tsx',
   output: {
-    file: 'build/index.js',
+    file: 'build/public/index.js',
     format: 'iife',
   },
   plugins: [
@@ -32,7 +32,16 @@ export default {
       include: /node_modules/,
     }),
     copy({
-      assets: ['src/public'],
+      targets: [
+        {
+          src: 'src/app-express.js',
+          dest: 'build',
+        },
+        {
+          src: 'src/assets',
+          dest: 'build/public',
+        },
+      ],
     }),
     babel({
       extensions,
@@ -83,15 +92,15 @@ export default {
         </html>`,
     }),
     scss({
-      output: 'build/index.css',
+      output: 'build/public/index.css',
     }),
     isProd && terser(),
     !isProd &&
       serve({
         host: 'localhost',
-        port: 3000,
+        port: 3001,
         open: true,
-        contentBase: ['build'],
+        contentBase: ['build/public'],
       }),
     !isProd &&
       livereload({

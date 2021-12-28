@@ -14,7 +14,7 @@ const App = (): JSX.Element => (
       <p>Rollup + TypeScript + React = ❤️</p>
       <TestComponent text="hehehehh eehhehhehe" />
       <Image
-        src="/public/images/sedan.png"
+        src="/assets/images/sedan.png"
         alt="sedan"
       />
     </AppContainer>
