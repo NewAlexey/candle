@@ -1,0 +1,82 @@
+[
+  {
+    "title":"title of product",
+    "description":"loooong long loooong description of product",
+    "imageSrc":"assets/images/sedan.png",
+    "price":"1500",
+    "onDiscount":false,
+    "discountPrice":"",
+    "amountOfDiscount":"",
+    "options": ["hello", "hello-1"]
+  },
+  {
+    "title":"title of product",
+    "description":"loooong long loooong description of product and addition few words!!",
+    "imageSrc":"assets/images/van.png",
+    "price":"150",
+    "onDiscount":true,
+    "discountPrice":"100",
+    "amountOfDiscount":"30%",
+    "options": ["hello", "hello-1"]
+  },
+  {
+    "title":"title of product",
+    "description":"loooong long loooong description of product",
+    "imageSrc":"assets/images/pickup.png",
+    "price":"170",
+    "onDiscount":false,
+    "discountPrice":"100",
+    "amountOfDiscount":"",
+    "options": ["hello", "hello-1"]
+  },
+  {
+    "title":"title of product",
+    "description":"loooong long loooong description of product",
+    "imageSrc":"assets/images/van.png",
+    "price":"140",
+    "onDiscount":true,
+    "discountPrice":"100",
+    "amountOfDiscount":"30%",
+    "options": ["hello", "hello-1"]
+  },
+  {
+    "title":"title of product",
+    "description":"loooong long loooong description of product",
+    "imageSrc":"assets/images/sedan.png",
+    "price":"1660",
+    "onDiscount":false,
+    "discountPrice":"",
+    "amountOfDiscount":"",
+    "options": ["hello", "hello-1"]
+  },
+  {
+    "title":"title of product",
+    "description":"loooong long loooong description of product",
+    "imageSrc":"assets/images/van.png",
+    "price":"666",
+    "onDiscount":false,
+    "discountPrice":"100",
+    "amountOfDiscount":"",
+    "options": ["hello", "hello-1"]
+  },
+  {
+    "title":"title of product",
+    "description":"loooong long loooong description of product",
+    "imageSrc":"assets/images/pickup.png",
+    "price":"5",
+    "onDiscount":true,
+    "discountPrice":"75",
+    "amountOfDiscount":"25%",
+    "options": ["hello", "hello-1"]
+  },
+  {
+    "title":"title of product",
+    "description":"loooong long loooong description of product",
+    "imageSrc":"assets/images/pickup.png",
+    "price":"1370",
+    "onDiscount":true,
+    "discountPrice":"100",
+    "amountOfDiscount":"30%",
+    "options": ["hello", "hello-1"]
+  }
+]
