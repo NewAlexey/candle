@@ -2,7 +2,6 @@ import replace from '@rollup/plugin-replace';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import babel from 'rollup-plugin-babel';
-import html from '@rollup/plugin-html';
 import scss from 'rollup-plugin-scss';
 import { terser } from 'rollup-plugin-terser';
 import serve from 'rollup-plugin-serve';
@@ -47,24 +46,6 @@ const babelConfig = {
   ],
 };
 
-const htmlConfig = {
-  fileName: 'index.html',
-  title: 'Candle',
-  template: ({ title }) => `
-      <!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <meta charset="utf-8">
-           <title>${title}</title>
-           <link rel="stylesheet" href="index.css">
-        </head>
-        <body>
-          <div id="app"></div>
-          <script src="index.js"></script>
-        </body>
-        </html>`,
-};
-
 export default {
   input: 'src/index.tsx',
   output: {
@@ -87,6 +68,10 @@ export default {
     copy({
       targets: [
         {
+          src: 'src/index.html',
+          dest: 'build/public',
+        },
+        {
           src: 'src/app-express.js',
           dest: 'build',
         },
@@ -97,7 +82,6 @@ export default {
       ],
     }),
     babel(babelConfig),
-    html(htmlConfig),
     scss({
       output: 'build/public/index.css',
     }),
