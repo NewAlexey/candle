@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import productsJson from '../../../../assets/products/example.json';
 
 import ProductCard from '../ProductCard/ProductCard';
@@ -7,6 +7,8 @@ import { FlexContainer } from '../../../../components/FlexContainer';
 import { DiscountFilter } from './components/DiscountFilter';
 // eslint-disable-next-line max-len
 import { CollapsedFiltersList } from '../../../../components/CollapsedFiltersList';
+import { CollapsedFiltersEnum } from '../../../../helpers/constants';
+import { sortProducts } from '../../../../helpers/helpers';
 
 const initialProducts = productsJson.map(
   (
@@ -44,12 +46,21 @@ export const ProductsContent: React.FC = () => {
   const [productList, setProductList] =
     React.useState<Array<IProduct>>(initialProducts);
   const [isOnDiscount, setIsOnDiscount] = React.useState(false);
+  const [selectedFilter, setSelectedFilter] =
+    React.useState<CollapsedFiltersEnum | null>(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
+    setProductList(sortProducts(productList, selectedFilter, initialProducts));
+    // eslint-disable-next-line
+  }, [selectedFilter, isOnDiscount]);
+
+  React.useEffect(() => {
     if (isOnDiscount) {
       setProductList(filterIsOnDiscountProducts(productList));
     } else {
-      setProductList(initialProducts);
+      setProductList(
+        sortProducts(initialProducts, selectedFilter, initialProducts),
+      );
     }
     // eslint-disable-next-line
   }, [isOnDiscount]);
@@ -63,10 +74,8 @@ export const ProductsContent: React.FC = () => {
         />
         <CollapsedFiltersList
           title="Sort"
-          initialProducts={initialProducts}
-          productList={productList}
-          setProductList={setProductList}
-          onDiscount={isOnDiscount}
+          selectedFilter={selectedFilter}
+          setSelectedFilter={setSelectedFilter}
         />
       </FlexContainer>
 
