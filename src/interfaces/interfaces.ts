@@ -16,6 +16,11 @@ export interface IProduct {
   options: Array<string>;
 }
 
+export interface IQueryResponse {
+  products: Array<IProduct>;
+  status: number;
+}
+
 export interface IContainer {
   pageTitle: string;
 }

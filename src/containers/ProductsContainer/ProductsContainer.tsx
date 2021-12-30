@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
+import { useLocation } from 'react-router-dom';
 
 import { ProductsContent } from './components/ProductsContent';
+import { useCustomQuery } from '../../hooks/useCustomQuery';
 
 interface IProductContainer {
   pageTitle: string;
@@ -10,15 +12,23 @@ interface IProductContainer {
 
 export const ProductsContainer: React.FC<IProductContainer> = ({
   pageTitle,
-}) => (
-  <ProductSection>
-    <Helmet>
-      <title>{pageTitle}</title>
-    </Helmet>
-    <h1>{pageTitle}</h1>
-    <ProductsContent />
-  </ProductSection>
-);
+}) => {
+  const products = useLocation().pathname.slice(1);
+  const { data, loading, errorMessage } = useCustomQuery(products);
+  return (
+    <ProductSection>
+      <Helmet>
+        <title>{pageTitle}</title>
+      </Helmet>
+      <h1>{pageTitle}</h1>
+      <ProductsContent
+        initialProducts={data || []}
+        loading={loading}
+        errorMessage={errorMessage}
+      />
+    </ProductSection>
+  );
+};
 
 const ProductSection = styled.section`
   display: flex;

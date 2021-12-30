@@ -1,0 +1,39 @@
+import React from 'react';
+import { IProduct, IQueryResponse } from '../interfaces/interfaces';
+import { RESPONSE_CODE } from '../helpers/constants';
+
+interface IUseCustomQueryOutput {
+  data: Array<IProduct>;
+  loading: boolean;
+  errorMessage: string;
+}
+
+export function useCustomQuery(products: string): IUseCustomQueryOutput {
+  const [data, setData] = React.useState<Array<IProduct>>([]);
+  const [loading, setLoading] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState('');
+
+  React.useEffect(() => {
+    async function fetchData(productsForQuery: string): Promise<void> {
+      setLoading(true);
+      try {
+        const response = await fetch('http://localhost:3000/api/getplease');
+        const result = (await response.json()) as IQueryResponse;
+
+        if (result.status === RESPONSE_CODE.COOL) {
+          setData(result.products);
+        } else {
+          throw new Error('chto-to ne to');
+        }
+      } catch (err: any) {
+        setErrorMessage(err?.message ?? 'Error... sorry');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchData(products);
+  }, []);
+
+  return { data, loading, errorMessage };
+}

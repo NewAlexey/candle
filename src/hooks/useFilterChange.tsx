@@ -37,7 +37,7 @@ export function useFilterChange(
       );
     }
     // eslint-disable-next-line
-  }, [isOnDiscount]);
+  }, [isOnDiscount, initialProducts]);
 
   return {
     productList,

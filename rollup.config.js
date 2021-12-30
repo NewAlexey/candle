@@ -73,12 +73,16 @@ export default {
           dest: 'build/public',
         },
         {
-          src: 'src/app-express.js',
+          src: 'app-express.js',
           dest: 'build',
         },
         {
           src: 'src/assets',
           dest: 'build/public',
+        },
+        {
+          src: 'backend',
+          dest: 'build',
         },
       ],
     }),
