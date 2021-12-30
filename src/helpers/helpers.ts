@@ -15,3 +15,9 @@ export function sortProducts(
 
   return [...productList.sort((a, b) => Number(b.price) - Number(a.price))];
 }
+
+export function filterIsOnDiscountProducts(
+  productList: Array<IProduct>,
+): Array<IProduct> {
+  return productList.filter((product) => product.onDiscount);
+}

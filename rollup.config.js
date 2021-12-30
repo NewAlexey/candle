@@ -57,6 +57,7 @@ export default {
       'process.env.NODE_ENV': JSON.stringify(
         isProd ? 'production' : 'development',
       ),
+      preventAssignment: true,
     }),
     resolve({
       extensions,
