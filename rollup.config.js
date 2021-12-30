@@ -11,48 +11,8 @@ import copy from 'rollup-plugin-copy';
 import json from '@rollup/plugin-json';
 
 const isProd = process.env.NODE_ENV === 'production';
+
 const extensions = ['.js', '.ts', '.tsx'];
-const devPlugins = [
-  'react-require',
-  !isProd && 'babel-plugin-styled-components',
-  '@babel/plugin-syntax-dynamic-import',
-  '@babel/plugin-proposal-class-properties',
-  [
-    '@babel/plugin-proposal-object-rest-spread',
-    {
-      useBuiltIns: true,
-    },
-  ],
-  [
-    '@babel/plugin-transform-runtime',
-    {
-      corejs: 3,
-      helpers: true,
-      regenerator: true,
-      useESModules: false,
-    },
-  ],
-];
-const prodPlugins = [
-  'react-require',
-  '@babel/plugin-syntax-dynamic-import',
-  '@babel/plugin-proposal-class-properties',
-  [
-    '@babel/plugin-proposal-object-rest-spread',
-    {
-      useBuiltIns: true,
-    },
-  ],
-  [
-    '@babel/plugin-transform-runtime',
-    {
-      corejs: 3,
-      helpers: true,
-      regenerator: true,
-      useESModules: false,
-    },
-  ],
-];
 
 const babelConfig = {
   extensions,
@@ -64,8 +24,29 @@ const babelConfig = {
     '@babel/preset-react',
     '@babel/preset-typescript',
   ],
-  plugins: isProd ? prodPlugins : devPlugins,
+  plugins: [
+    'react-require',
+    !isProd ? 'babel-plugin-styled-components' : {},
+    '@babel/plugin-syntax-dynamic-import',
+    '@babel/plugin-proposal-class-properties',
+    [
+      '@babel/plugin-proposal-object-rest-spread',
+      {
+        useBuiltIns: true,
+      },
+    ],
+    [
+      '@babel/plugin-transform-runtime',
+      {
+        corejs: 3,
+        helpers: true,
+        regenerator: true,
+        useESModules: false,
+      },
+    ],
+  ],
 };
+
 const htmlConfig = {
   fileName: 'index.html',
   title: 'Candle',
