@@ -8,6 +8,8 @@ interface IFlexContainer {
   flexDirection?: string;
   height?: string;
   width?: string;
+  padding?: string;
+  margin?: string;
 }
 
 export const FlexContainer: React.FC<IFlexContainer> = ({
@@ -17,6 +19,8 @@ export const FlexContainer: React.FC<IFlexContainer> = ({
   flexDirection,
   height,
   width,
+  padding,
+  margin,
 
   children,
 }) => (
@@ -27,6 +31,8 @@ export const FlexContainer: React.FC<IFlexContainer> = ({
     flexDirection={flexDirection}
     height={height}
     width={width}
+    padding={padding}
+    margin={margin}
   >
     {children}
   </Flex>
@@ -39,6 +45,8 @@ const Flex = styled.div<{
   flexDirection?: string;
   height?: string;
   width?: string;
+  padding?: string;
+  margin?: string;
 }>`
   display: flex;
   ${({ alignItems }) => css`
@@ -58,5 +66,11 @@ const Flex = styled.div<{
   `}  
   ${({ width }) => css`
     width: ${width};
+  `}
+  ${({ padding }) => css`
+    padding: ${padding};
+  `}
+  ${({ margin }) => css`
+    margin: ${margin};
   `}
 `;

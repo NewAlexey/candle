@@ -43,6 +43,8 @@ export const ProductsContent: React.FC<IProductsContent> = ({
         />
       </FlexContainer>
 
+      {errorMessage && !productList.length && <span>{errorMessage}</span>}
+
       {loading ? (
         <FlexContainer flexWrap="wrap" justifyContent="space-around">
           {SKELETON_LIST.map((key) => (
