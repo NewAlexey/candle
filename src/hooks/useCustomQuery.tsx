@@ -17,23 +17,25 @@ export function useCustomQuery(products: string): IUseCustomQueryOutput {
     async function fetchData(productsForQuery: string): Promise<void> {
       setLoading(true);
       try {
-        const response = await fetch('http://localhost:3000/api/getplease');
+        const response = await fetch(
+          `http://localhost:3000/api?product=${productsForQuery}`,
+        );
         const result = (await response.json()) as IQueryResponse;
 
         if (result.status === RESPONSE_CODE.COOL) {
           setData(result.products);
         } else {
-          throw new Error('chto-to ne to');
+          setErrorMessage(result.message);
         }
       } catch (err: any) {
-        setErrorMessage(err?.message ?? 'Error... sorry');
+        setErrorMessage(err?.message ?? 'Error... sorry. Try later');
       } finally {
         setLoading(false);
       }
     }
 
     fetchData(products);
-  }, []);
+  }, [products]);
 
   return { data, loading, errorMessage };
 }

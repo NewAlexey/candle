@@ -7,6 +7,8 @@ import { DiscountFilter } from './components/DiscountFilter';
 // eslint-disable-next-line max-len
 import { CollapsedFiltersList } from '../../../../components/CollapsedFiltersList';
 import { useFilterChange } from '../../../../hooks/useFilterChange';
+import { SkeletonComponent } from '../../../../components/SkeletonComponent';
+import { SKELETON_LIST } from '../../../../helpers/constants';
 
 interface IProductsContent {
   initialProducts: Array<IProduct>;
@@ -42,12 +44,16 @@ export const ProductsContent: React.FC<IProductsContent> = ({
       </FlexContainer>
 
       {loading ? (
-        <div>loading...</div>
+        <FlexContainer flexWrap="wrap" justifyContent="space-around">
+          {SKELETON_LIST.map((key) => (
+            <SkeletonComponent key={key} />
+          ))}
+        </FlexContainer>
       ) : (
         <FlexContainer flexWrap="wrap" justifyContent="space-around">
           {productList.map(
             ({
-              id,
+              _id,
               title,
               description,
               options,
@@ -58,8 +64,8 @@ export const ProductsContent: React.FC<IProductsContent> = ({
               amountOfDiscount,
             }) => (
               <ProductCard
-                key={id}
-                id={id}
+                key={_id}
+                _id={_id}
                 title={title}
                 description={description}
                 options={options}

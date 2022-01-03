@@ -5,7 +5,7 @@ export interface IContext {
 }
 
 export interface IProduct {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   imageSrc: string;
@@ -19,6 +19,7 @@ export interface IProduct {
 export interface IQueryResponse {
   products: Array<IProduct>;
   status: number;
+  message: string;
 }
 
 export interface IContainer {

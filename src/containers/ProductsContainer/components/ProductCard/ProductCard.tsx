@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { IProduct } from '../../../../interfaces/interfaces';
 import { DiscountContainer } from './components/DiscountContainer';
-import { PRICE_FONT_SIZE } from '../../../../helpers/constants';
+import { IMAGE_SIZE, PRICE_FONT_SIZE } from '../../../../helpers/constants';
 import DiscountBadge from './components/DiscountBadge/DiscountBadge';
 
 const ProductCard: React.FC<IProduct> = ({
@@ -18,7 +18,12 @@ const ProductCard: React.FC<IProduct> = ({
   <ProductCardContainer>
     <ImageContainer>
       {onDiscount && <DiscountBadge amountOfDiscount={amountOfDiscount} />}
-      <img src={imageSrc} alt={`${title}`} width={300} height={250} />
+      <img
+        src={imageSrc}
+        alt={title}
+        width={IMAGE_SIZE.WIDTH}
+        height={IMAGE_SIZE.HEIGHT}
+      />
     </ImageContainer>
     <InformationContainer>
       <Title>{title}</Title>

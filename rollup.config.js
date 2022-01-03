@@ -13,6 +13,25 @@ const isProd = process.env.NODE_ENV === 'production';
 
 const extensions = ['.js', '.ts', '.tsx'];
 
+const copyConfig = [
+  {
+    src: 'src/index.html',
+    dest: 'build/public',
+  },
+  {
+    src: 'app-express.js',
+    dest: 'build',
+  },
+  {
+    src: 'src/assets',
+    dest: 'build/public',
+  },
+  {
+    src: 'backend',
+    dest: 'build',
+  },
+];
+
 const babelConfig = {
   extensions,
   exclude: /node_modules/,
@@ -67,24 +86,7 @@ export default {
     }),
     json(),
     copy({
-      targets: [
-        {
-          src: 'src/index.html',
-          dest: 'build/public',
-        },
-        {
-          src: 'app-express.js',
-          dest: 'build',
-        },
-        {
-          src: 'src/assets',
-          dest: 'build/public',
-        },
-        {
-          src: 'backend',
-          dest: 'build',
-        },
-      ],
+      targets: copyConfig,
     }),
     babel(babelConfig),
     scss({

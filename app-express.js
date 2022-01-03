@@ -27,15 +27,22 @@ const client = new MongoClient(process.env.MONGODB_URI, {
   }
 })();
 
-app.get('/api/getplease', async (req, res) => {
+app.get('/api', async (req, res) => {
+  const queryParam = req.query.product;
   try {
     const db = client.db('candleDB');
-    const collection = db.collection('products');
+    const collection = db.collection(queryParam);
     const allProducts = await collection.find().toArray();
 
-    res.status(200).send({ products: allProducts, status: 200 });
+    res
+      .status(200)
+      .send({ products: allProducts, status: 200, message: 'all cool' });
   } catch (err) {
-    res.status(500).send({ message: err, status: 500 });
+    res.status(500).send({
+      products: [],
+      status: 500,
+      message: err || 'Sorry, problem with our services...',
+    });
   }
 });
 
