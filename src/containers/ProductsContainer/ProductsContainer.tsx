@@ -15,6 +15,7 @@ export const ProductsContainer: React.FC<IProductContainer> = ({
 }) => {
   const products = useLocation().pathname.slice(1);
   const { data, loading, errorMessage } = useCustomQuery(products);
+
   return (
     <ProductSection>
       <Helmet>

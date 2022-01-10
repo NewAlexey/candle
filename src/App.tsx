@@ -3,13 +3,13 @@ import './app.scss';
 import { BrowserRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { AppContext, contextData } from './helpers/AppContext';
 import { TitleComponent } from './components/TitleComponent';
 import { AppRouterContent, AppNavigationComponent } from './utils/Router';
 import { AppContainer } from './containers/AppContainer';
+import { AppContextProvider } from './context/AppContext';
 
 const App: React.FC = () => (
-  <AppContext.Provider value={contextData}>
+  <AppContextProvider>
     <BrowserRouter>
       <HeaderContainer>
         <AppContainer>
@@ -22,7 +22,7 @@ const App: React.FC = () => (
         <AppRouterContent />
       </AppContainer>
     </BrowserRouter>
-  </AppContext.Provider>
+  </AppContextProvider>
 );
 
 export default App;

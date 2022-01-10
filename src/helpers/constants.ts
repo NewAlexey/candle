@@ -17,7 +17,7 @@ export enum IMAGE_SIZE {
 
 export enum CARD_SIZE {
   WIDTH = 340,
-  HEIGHT = 410,
+  HEIGHT = 440,
 }
 
 const SKELETON_COUNT = 9;

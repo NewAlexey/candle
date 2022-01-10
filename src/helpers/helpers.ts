@@ -1,4 +1,4 @@
-import { IProduct } from '../interfaces/interfaces';
+import { IProduct, IProductInOrder } from '../interfaces/interfaces';
 import { CollapsedFiltersEnum } from './constants';
 
 export function sortProducts(
@@ -20,4 +20,22 @@ export function filterIsOnDiscountProducts(
   productList: Array<IProduct>,
 ): Array<IProduct> {
   return productList.filter((product) => product.onDiscount);
+}
+
+function calculateTotalPrice(count: number, price: string): number {
+  return Number(Number(count * Number(price)).toFixed(2));
+}
+
+export function createProductForOrder(
+  productData: IProduct,
+  count: number,
+): IProductInOrder {
+  const price = productData.onDiscount
+    ? productData.discountPrice
+    : productData.price;
+  return {
+    ...productData,
+    count,
+    totalPrice: calculateTotalPrice(count, price),
+  };
 }

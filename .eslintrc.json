@@ -22,10 +22,11 @@
         "react-hooks"
     ],
     "rules": {
+        "no-underscore-dangle": "off",
         "implicit-arrow-linebreak": "off",
         "react/require-default-props": [0],
         "react/jsx-one-expression-per-line": [0],
-        "operator-linebreak": ["error", "after"],
+        "operator-linebreak": ["error", "before"],
         "no-use-before-define": "off",
         "react/jsx-filename-extension": [ "warn", {"extensions": [".tsx"]} ],
         "import/extensions": [

@@ -1,7 +1,8 @@
 import { CollapsedFiltersEnum } from '../helpers/constants';
 
-export interface IContext {
-  data?: string;
+export interface IProductInOrder extends IProduct {
+  count: number;
+  totalPrice: number;
 }
 
 export interface IProduct {

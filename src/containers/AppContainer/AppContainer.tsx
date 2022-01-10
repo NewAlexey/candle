@@ -6,7 +6,8 @@ export const AppContainer: React.FC = ({ children }) => (
 );
 
 const AppContainerDiv = styled.div`
-  width: 1400px;
+  width: 1320px;
+  padding: 0 40px;
   margin: 0 auto;
 
   @media (max-width: 1500px) {

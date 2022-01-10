@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { IProduct } from '../../../../interfaces/interfaces';
-import { DiscountContainer } from './components/DiscountContainer';
-import { IMAGE_SIZE, PRICE_FONT_SIZE } from '../../../../helpers/constants';
-import DiscountBadge from './components/DiscountBadge/DiscountBadge';
+import { IMAGE_SIZE } from '../../../../helpers/constants';
+import { ContentForOrder } from './components/ContentForOrder';
+import { PriceContainer } from './components/PriceContainer';
 
 const ProductCard: React.FC<IProduct> = ({
   title,
@@ -14,10 +14,12 @@ const ProductCard: React.FC<IProduct> = ({
   onDiscount,
   discountPrice,
   amountOfDiscount,
+  options,
+  _id,
 }) => (
   <ProductCardContainer>
     <ImageContainer>
-      {onDiscount && <DiscountBadge amountOfDiscount={amountOfDiscount} />}
+      {onDiscount && <DiscountBadge>{amountOfDiscount}</DiscountBadge>}
       <img
         src={imageSrc}
         alt={title}
@@ -28,13 +30,22 @@ const ProductCard: React.FC<IProduct> = ({
     <InformationContainer>
       <Title>{title}</Title>
       <Description>{description}</Description>
-      <PriceContainer>
-        {onDiscount ? (
-          <DiscountContainer price={price} discountPrice={discountPrice} />
-        ) : (
-          <UsualPrice>{price}$</UsualPrice>
-        )}
-      </PriceContainer>
+      <PriceContainer
+        onDiscount={onDiscount}
+        price={price}
+        discountPrice={discountPrice}
+      />
+      <ContentForOrder
+        _id={_id}
+        title={title}
+        description={description}
+        imageSrc={imageSrc}
+        price={price}
+        onDiscount={onDiscount}
+        discountPrice={discountPrice}
+        amountOfDiscount={amountOfDiscount}
+        options={options}
+      />
     </InformationContainer>
   </ProductCardContainer>
 );
@@ -46,6 +57,17 @@ const ImageContainer = styled.div`
   height: 250px;
   position: relative;
   overflow: hidden;
+`;
+
+const DiscountBadge = styled.div`
+  position: absolute;
+  right: -16px;
+  transform: rotate(30deg);
+  top: 10px;
+  width: 126px;
+  text-align: center;
+  background-color: #bcbbff;
+  font-size: 20px;
 `;
 
 const ProductCardContainer = styled.div`
@@ -61,12 +83,12 @@ const ProductCardContainer = styled.div`
 `;
 
 const InformationContainer = styled.div`
-  height: 120px;
+  height: 160px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: column;
-  padding-top: 20px;
+  padding: 20px 10px 10px;
 `;
 
 const Title = styled.span`
@@ -77,12 +99,4 @@ const Description = styled.span`
   font-size: 16px;
   padding-top: 10px;
   text-align: center;
-`;
-
-const UsualPrice = styled.span`
-  font-size: ${PRICE_FONT_SIZE};
-`;
-
-const PriceContainer = styled.div`
-  padding-top: 15px;
 `;

@@ -13,6 +13,7 @@ import { ProductsContainer } from '../containers/ProductsContainer';
 import { NotFoundContainer } from '../containers/404';
 import { FourthContainer } from '../containers/FourthContainer';
 import { ThirdContainer } from '../containers/ThirdContainer';
+import { BasketContainer } from '../containers/BasketContainer';
 
 interface IRoute {
   path: string;
@@ -45,6 +46,11 @@ const APP_ROUTER: Array<IRoute> = [
     path: '/fourth',
     title: 'Fourth Section',
     element: <FourthContainer />,
+  },
+  {
+    path: '/basket',
+    title: 'basket',
+    element: <BasketContainer />,
   },
   {
     path: '*',
