@@ -1,19 +1,21 @@
 import React from 'react';
-import { IProduct } from '../interfaces/interfaces';
+import { IOrderProduct } from '../interfaces/interfaces';
 
 interface IBasketContext {
   basketCount: number;
-  productsList: Array<IProduct>;
-  addProductInBasket: (product: IProduct) => void;
+  productsList: Array<IOrderProduct>;
+  addProductInBasket: (product: IOrderProduct) => void;
 }
 
 export const AppContext = React.createContext({} as IBasketContext);
 
 export const AppContextProvider: React.FC = ({ children }) => {
-  const [productsList, setProductsList] = React.useState<Array<IProduct>>([]);
+  const [productsList, setProductsList] = React.useState<Array<IOrderProduct>>(
+    [],
+  );
 
   const addProductInBasket = React.useCallback(
-    (product: IProduct) => {
+    (product: IOrderProduct) => {
       const isProductAlreadyInBasket = productsList.find(
         (productInList) => productInList._id === product._id,
       );

@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { ProductCounter } from './ProductCounter';
-import { useAppContext } from '../../../../../../context/AppContext';
-import { IProduct } from '../../../../../../interfaces/interfaces';
-import { createProductForOrder } from '../../../../../../helpers/helpers';
+import { useAppContext } from '../../../../context/AppContext';
+import { IProduct } from '../../../../interfaces/interfaces';
+import { createProductForOrder } from '../../../../helpers/helpers';
 
 export const ContentForOrder: React.FC<IProduct> = (props) => {
   const [productCount, setProductCount] = React.useState(1);

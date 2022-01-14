@@ -1,7 +1,7 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
-import ProductCard from '../ProductCard/ProductCard';
-import { IProduct } from '../../../../interfaces/interfaces';
+import ProductCard from '../../../../components/ProductCard/ProductCard';
 import { FlexContainer } from '../../../../components/FlexContainer';
 import { DiscountFilter } from './components/DiscountFilter';
 // eslint-disable-next-line max-len
@@ -10,24 +10,19 @@ import { useFilterChange } from '../../../../hooks/useFilterChange';
 import { SkeletonComponent } from '../../../../components/SkeletonComponent';
 import { SKELETON_LIST } from '../../../../helpers/constants';
 
-interface IProductsContent {
-  initialProducts: Array<IProduct>;
-  loading: boolean;
-  errorMessage: string;
-}
+import { useCustomQuery } from '../../../../hooks/useCustomQuery';
 
-export const ProductsContent: React.FC<IProductsContent> = ({
-  initialProducts,
-  loading,
-  errorMessage,
-}) => {
+export const ProductsContent: React.FC = () => {
+  const products = useLocation().pathname.slice(1);
+  const { data, loading, errorMessage } = useCustomQuery(products);
+
   const {
     productList,
     isOnDiscount,
     setIsOnDiscount,
     selectedFilter,
     setSelectedFilter,
-  } = useFilterChange(initialProducts);
+  } = useFilterChange(data);
 
   return (
     <>

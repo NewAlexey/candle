@@ -28,7 +28,7 @@ export function useCustomQuery(products: string): IUseCustomQueryOutput {
           setErrorMessage(result.message);
         }
       } catch (err: any) {
-        setErrorMessage(err?.message ?? 'Error... sorry. Try later');
+        setErrorMessage(`${err}` ?? 'Error... sorry. Try later');
       } finally {
         setLoading(false);
       }

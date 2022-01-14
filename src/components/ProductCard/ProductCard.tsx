@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { IProduct } from '../../../../interfaces/interfaces';
-import { IMAGE_SIZE } from '../../../../helpers/constants';
+import { IProduct } from '../../interfaces/interfaces';
+import { IMAGE_SIZE } from '../../helpers/constants';
 import { ContentForOrder } from './components/ContentForOrder';
 import { PriceContainer } from './components/PriceContainer';
+import { DiscountBadge } from '../../atoms/DiscountBadge';
 
 const ProductCard: React.FC<IProduct> = ({
   title,
@@ -19,7 +20,7 @@ const ProductCard: React.FC<IProduct> = ({
 }) => (
   <ProductCardContainer>
     <ImageContainer>
-      {onDiscount && <DiscountBadge>{amountOfDiscount}</DiscountBadge>}
+      {onDiscount && <DiscountBadge discount={amountOfDiscount} />}
       <img
         src={imageSrc}
         alt={title}
@@ -57,17 +58,6 @@ const ImageContainer = styled.div`
   height: 250px;
   position: relative;
   overflow: hidden;
-`;
-
-const DiscountBadge = styled.div`
-  position: absolute;
-  right: -16px;
-  transform: rotate(30deg);
-  top: 10px;
-  width: 126px;
-  text-align: center;
-  background-color: #bcbbff;
-  font-size: 20px;
 `;
 
 const ProductCardContainer = styled.div`

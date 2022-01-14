@@ -25,3 +25,7 @@ const SKELETON_COUNT = 9;
 export const SKELETON_LIST = new Array(SKELETON_COUNT)
   .fill(1)
   .map(() => Math.floor(Math.random() * 1000));
+
+export enum Z_INDEXES {
+  MODAL_Z_INDEX = 50,
+}

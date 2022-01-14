@@ -1,4 +1,4 @@
-import { IProduct, IProductInOrder } from '../interfaces/interfaces';
+import { IProduct, IOrderProduct } from '../interfaces/interfaces';
 import { CollapsedFiltersEnum } from './constants';
 
 export function sortProducts(
@@ -29,7 +29,7 @@ function calculateTotalPrice(count: number, price: string): number {
 export function createProductForOrder(
   productData: IProduct,
   count: number,
-): IProductInOrder {
+): IOrderProduct {
   const price = productData.onDiscount
     ? productData.discountPrice
     : productData.price;

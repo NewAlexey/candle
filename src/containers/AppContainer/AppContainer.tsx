@@ -13,4 +13,13 @@ const AppContainerDiv = styled.div`
   @media (max-width: 1500px) {
     width: 1000px;
   }
+
+  @media (max-width: 1200px) {
+    width: 700px;
+  }
+
+  @media (max-width: 768px) {
+    width: calc(100% - 40px);
+    padding: 0 20px;
+  }
 `;

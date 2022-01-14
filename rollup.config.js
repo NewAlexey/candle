@@ -96,10 +96,14 @@ export default {
     !isProd &&
       serve({
         host: 'localhost',
-        port: 3001,
+        port: 8080,
         open: true,
         contentBase: ['build/public'],
         historyApiFallback: true,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          foo: 'bar',
+        },
       }),
     !isProd &&
       livereload({

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { PRICE_FONT_SIZE } from '../../../../../../helpers/constants';
+import { PRICE_FONT_SIZE } from '../../../../helpers/constants';
 
 interface IProps {
   onDiscount: boolean;
