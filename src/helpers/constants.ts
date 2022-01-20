@@ -34,3 +34,7 @@ export enum PRODUCT_BASKET {
   PRODUCT_IN_BASKET = 'Remove',
   PRODUCT_NOT_IN_BASKET = 'Add',
 }
+
+export const appVersionLocalStorage = 'candleAppVersion';
+
+export const basketLocalStorage = 'candleBasket';

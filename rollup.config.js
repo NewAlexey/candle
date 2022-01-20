@@ -65,7 +65,6 @@ export default {
   output: {
     file: 'build/public/index.js',
     format: 'iife',
-    sourcemap: isProd,
   },
   plugins: [
     replace({

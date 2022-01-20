@@ -32,8 +32,8 @@ export const OrderCard: React.FC<IOrderProduct> = ({
         <h3>{title}</h3>
         <span>{description}</span>
         <ProductOptions>
-          {options.map((option) => (
-            <ProductOption>{option}</ProductOption>
+          {options.map((option, index) => (
+            <ProductOption key={`${index + 1}`}>{option}</ProductOption>
           ))}
         </ProductOptions>
       </InformationContainer>

@@ -1,5 +1,9 @@
 import React from 'react';
 import { IOrderProduct } from '../interfaces/interfaces';
+import {
+  getStartValueFromLocalStorage,
+  useLocalStorage,
+} from '../hooks/useLocalStorage';
 
 interface IBasketContext {
   basketCount: number;
@@ -14,6 +18,8 @@ export const BasketContextProvider: React.FC = ({ children }) => {
   const [productsList, setProductsList] = React.useState<Array<IOrderProduct>>(
     [],
   );
+
+  useLocalStorage(productsList, setProductsList);
 
   const addProductInBasket = React.useCallback(
     (product: IOrderProduct) => {
