@@ -2,17 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { ProductCounter } from './ProductCounter';
-import { useAppContext } from '../../../../context/AppContext';
-import { IProduct } from '../../../../interfaces/interfaces';
+import { useBasketContext } from '../../../../context/BasketContext';
+import { IOrderProduct, IProduct } from '../../../../interfaces/interfaces';
 import { createProductForOrder } from '../../../../helpers/helpers';
+import { PRODUCT_BASKET } from '../../../../helpers/constants';
 
-export const ContentForOrder: React.FC<IProduct> = (props) => {
+function isProductInBasket(id: string, productsList: IOrderProduct[]): boolean {
+  return !productsList.find((product) => product._id === id);
+}
+
+export const ContentForOrder: React.FC<IProduct> = ({ _id, ...props }) => {
   const [productCount, setProductCount] = React.useState(1);
-  const { addProductInBasket } = useAppContext();
-
-  const handleAddToBasket = (): void => {
-    addProductInBasket(createProductForOrder(props, productCount));
-  };
+  const { addProductInBasket, productsList, removeProductFromBasket } =
+    useBasketContext();
 
   return (
     <Container>
@@ -20,12 +22,28 @@ export const ContentForOrder: React.FC<IProduct> = (props) => {
         productCount={productCount}
         setProductCount={setProductCount}
       />
-      <BasketButton onClick={handleAddToBasket}>Add in basket</BasketButton>
+      {isProductInBasket(_id, productsList) ? (
+        <BasketAddButton
+          onClick={() =>
+            addProductInBasket(
+              createProductForOrder({ _id, ...props }, productCount),
+            )
+          }
+        >
+          {PRODUCT_BASKET.PRODUCT_NOT_IN_BASKET}
+        </BasketAddButton>
+      ) : (
+        <BasketRemoveButton onClick={() => removeProductFromBasket(_id)}>
+          {PRODUCT_BASKET.PRODUCT_IN_BASKET}
+        </BasketRemoveButton>
+      )}
     </Container>
   );
 };
 
-const BasketButton = styled.button``;
+const BasketAddButton = styled.button``;
+
+const BasketRemoveButton = styled.button``;
 
 const Container = styled.div`
   display: flex;

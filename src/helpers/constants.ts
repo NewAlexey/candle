@@ -29,3 +29,8 @@ export const SKELETON_LIST = new Array(SKELETON_COUNT)
 export enum Z_INDEXES {
   MODAL_Z_INDEX = 50,
 }
+
+export enum PRODUCT_BASKET {
+  PRODUCT_IN_BASKET = 'Remove',
+  PRODUCT_NOT_IN_BASKET = 'Add',
+}

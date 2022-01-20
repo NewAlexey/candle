@@ -1,6 +1,7 @@
 import React from 'react';
 import { IProduct, IQueryResponse } from '../interfaces/interfaces';
 import { RESPONSE_CODE } from '../helpers/constants';
+import { DOMAIN } from '../helpers/config';
 
 interface IUseCustomQueryOutput {
   data: Array<IProduct>;
@@ -18,7 +19,7 @@ export function useCustomQuery(products: string): IUseCustomQueryOutput {
       setLoading(true);
       try {
         const response = await fetch(
-          `http://localhost:3000/api?product=${productsForQuery}`,
+          `${DOMAIN}/api?product=${productsForQuery}`,
         );
         const result = (await response.json()) as IQueryResponse;
 

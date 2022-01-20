@@ -43,6 +43,7 @@ export const OrderCard: React.FC<IOrderProduct> = ({
 
 const OrderCardContainer = styled.div`
   display: flex;
+  margin: 50px 0;
   -webkit-box-shadow: 2px 6px 14px 0 rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 2px 6px 14px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 2px 6px 14px 0 rgba(0, 0, 0, 0.2);

@@ -7,9 +7,8 @@ import { terser } from 'rollup-plugin-terser';
 import serve from 'rollup-plugin-serve';
 import livereload from 'rollup-plugin-livereload';
 import copy from 'rollup-plugin-copy';
-import json from '@rollup/plugin-json';
 
-const isProd = process.env.NODE_ENV === 'production';
+const isProd = !process.env.ROLLUP_WATCH;
 
 const extensions = ['.js', '.ts', '.tsx'];
 
@@ -25,10 +24,6 @@ const copyConfig = [
   {
     src: 'src/assets',
     dest: 'build/public',
-  },
-  {
-    src: 'backend',
-    dest: 'build',
   },
 ];
 
@@ -70,6 +65,7 @@ export default {
   output: {
     file: 'build/public/index.js',
     format: 'iife',
+    sourcemap: isProd,
   },
   plugins: [
     replace({
@@ -84,11 +80,10 @@ export default {
     commonjs({
       include: /node_modules/,
     }),
-    json(),
+    babel(babelConfig),
     copy({
       targets: copyConfig,
     }),
-    babel(babelConfig),
     scss({
       output: 'build/public/index.css',
     }),
@@ -102,7 +97,6 @@ export default {
         historyApiFallback: true,
         headers: {
           'Access-Control-Allow-Origin': '*',
-          foo: 'bar',
         },
       }),
     !isProd &&

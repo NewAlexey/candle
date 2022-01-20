@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 import { FlexContainer } from '../FlexContainer';
-import { useAppContext } from '../../context/AppContext';
+import { useBasketContext } from '../../context/BasketContext';
 
 export const TitleComponent: React.FC = () => {
-  const { basketCount } = useAppContext();
+  const { basketCount } = useBasketContext();
   const navigate = useNavigate();
 
   const handleGoToBasket = (): void => {
